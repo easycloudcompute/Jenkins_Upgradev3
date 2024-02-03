@@ -4,7 +4,10 @@ pipeline {
     stages {
         stage('Install .NET 7 SDK') {
             steps {
+                sh 'sudo apt-get update'
+                sh 'sudo apt-get install -y dotnet-sdk-7.0'
                 sh 'curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 7.0'
+                sh 'export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT="true" PATH="${PATH}:/root/.dotnet"'
             }
         }
 
